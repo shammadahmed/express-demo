@@ -1,8 +1,10 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => res.send('Hello world!'));
+app.set('view engine', 'hbs');
 
-app.get('/names/:name', (req, res) => res.send(`Hello ${req.params.name}`));
+app.get('/', (req, res) => res.render('greeting', {name: 'World'}));
+
+app.get('/names/:name', (req, res) => res.render('greeting', {name: req.params.name}));
 
 app.listen(3000, () => console.log('The server is running.'));
